@@ -1,10 +1,28 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
+    <title>Imageboard</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
+
+
+    <div id='main'>
+        
+
+<!-- <h3 style="color: pink" v-if='seen'>Hallouu it meeey</h3>
+<h3 v-else> no its mey</h3> -->
+<h2>
+    {{name.toUpperCase()}}
+</h2>
+<ul>
+    <img v-for='image in images' :src="image.url">
+    <p v-for='image in images'>{{image.title}}</p>
+</ul>
+    </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
