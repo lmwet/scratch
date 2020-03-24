@@ -1,3 +1,40 @@
 * {
-    background-color: burlywood;
+    box-sizing: border-box;
+}
+h2 {
+    font-size: 42px;
+    color: #151e3f;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #e0e0e0;
+    overflow: hidden;
+}
+div.container {
+    padding: 40px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+li.card {
+    padding: 2%;
+    list-style: none;
+    height: 25vh;
+    width: 25vw;
+}
+img {
+    min-width: 20vw;
+    max-width: 20vw;
+}
+p {
+    color: #151e3f;
+    font-weight: 300;
+    line-height: normal;
 }
