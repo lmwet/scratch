@@ -22,7 +22,7 @@ console.log("linked");
 
         // methods: {
         //     myFunction: function() {
-        //         console.log("es lauft bei mir");
+        //         console.log("bei mir laufts");
         //     } //myFunction
         // } //methods
     });

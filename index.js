@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
-const spicedPg = require("spiced-pg");
-const db = spicedPg(
-    "postgres:postgres:postgres:@localhost@localhost:5432/images"
-);
+const db = require("./utils/db.js");
 app.use(express.static("public")); // by default will look for a index.js file
 
 // let images = [
@@ -25,19 +22,9 @@ app.use(express.static("public")); // by default will look for a index.js file
 //     }
 // ];
 
-const renderImages = () => {
-    const q = `SELECT 
-    url, 
-    title,
-    description
-    FROM
-    images;`;
-    return db.query(q);
-};
-
 app.get("/images", (req, res) => {
     console.log("/images route has been hit!");
-    renderImages()
+    db.renderImages()
         .then(images => {
             res.json(images);
             console.log("images in renderImages", images);
