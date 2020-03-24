@@ -6,16 +6,16 @@ h2 {
     color: #151e3f;
     font-weight: 300;
     letter-spacing: 2px;
+    text-align: center;
 }
 body {
     font-family: "Source Sans Pro", sans-serif;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #e0e0e0;
-    overflow: hidden;
+    /* overflow-x: hidden; */
 }
 div.container {
     padding: 40px 80px;
@@ -26,8 +26,12 @@ div.container {
 li.card {
     padding: 2%;
     list-style: none;
-    height: 25vh;
+    height: auto;
     width: 25vw;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    margin: 15px;
 }
 img {
     min-width: 20vw;
@@ -37,4 +41,16 @@ p {
     color: #151e3f;
     font-weight: 300;
     line-height: normal;
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+input {
+    padding: 5px;
+    margin: 2em;
+}
+button {
+    padding: 5px;
 }

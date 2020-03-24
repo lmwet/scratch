@@ -1,6 +1,8 @@
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
+const s3 = require("./s3");
+const conf = require("./config.json");
 
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -37,22 +39,27 @@ app.get("/images", (req, res) => {
         .catch(e => console.log("eror in renderImages", e));
 });
 
-app.post("/upload", uploader.single("file"), (req, res) => {
-    // gives you access to your file
-    console.log("file: ", req.file);
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    // insert a row in images table for the new image
+    let imageUrl = conf.s3Url + req.file.filename;
+
+    db.addImage(
+        req.body.title,
+        req.body.description,
+        req.body.username,
+        imageUrl
+    )
+        .then(image => {
+            res.json(image);
+        })
+        .catch(err => {
+            console.log("err in add image", err);
+            res.sendStatus(500);
+        });
+    //send the url of the image as a response
+    console.log("file in index post upload: ", req.file);
     // gives you access to the user input
     console.log("user input: ", req.body);
-
-    if (req.file) {
-        // you'll eventually want to make a db insert here for all the info!
-        res.json({
-            success: true
-        });
-    } else {
-        res.json({
-            success: false
-        });
-    }
 });
 
 app.listen(8080, () => console.log("listening from 8080"));

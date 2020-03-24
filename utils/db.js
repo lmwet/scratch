@@ -9,6 +9,16 @@ exports.renderImages = () => {
     title,
     description
     FROM
-    images;`;
+    images
+    ORDER BY id DESC;`;
     return db.query(q);
+};
+
+exports.addImage = (title, description, username, url) => {
+    const q = `INSERT into images (title, description, username, url)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *`;
+    console.log("query from addimages", q);
+    const params = [title, description, username, url];
+    return db.query(q, params);
 };

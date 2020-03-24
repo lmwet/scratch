@@ -26,7 +26,7 @@
             handleClick: function(e) {
                 e.preventDefault();
                 // 'this' allows me to see all the properties of data
-                console.log("this! ", this);
+                console.log("this! ", this); //this contains the filename
 
                 // we NEED to use FormData to send a file to the server
                 var formData = new FormData();
@@ -39,6 +39,7 @@
                     .post("/upload", formData)
                     .then(function(resp) {
                         console.log("resp from POST /uplaod: ", resp);
+                        //some vue stuff to render the first image of the array unshift
                     })
                     .catch(function(err) {
                         console.log("err in POST /upload: ", err);
@@ -48,6 +49,7 @@
             handleChange: function(e) {
                 // console.log('handleChange is running!!!!');
                 // console.log('file: ', e.target.files[0]);
+                //For the file input, you will have to handle the "change" event and manually set a property on the instance to contain the file.
                 this.file = e.target.files[0];
             }
         }
