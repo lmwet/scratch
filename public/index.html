@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-    <title>Imageboard</title>
+    <title>Daily Sketch</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-
 
     <div id='main'>
         
@@ -16,7 +15,8 @@
 <h2>
     {{name.toUpperCase()}}
 </h2>
-<form>
+
+<form id='main-form'>
     <input v-model='title' type="text" name='title' placeholder='title'>
     <input v-model='description' type="text" name='description' placeholder='description'>
     <input v-model='username' type="text" name='username' placeholder='username'>
@@ -26,19 +26,55 @@
 
 <div class="container" >
     <li v-for='image in images' class="card">
-    <img :src="image.url">
+    <img @click='openModal' class="small" :src="image.url">
     <p class="title">{{image.title}}</p>
 </li>
-
-
-
-
 </div>
+
+
+<image-modal 
+    v-if="currentImageId"
+    id="currentImageId"
+    @close= "closeModal"></image-modal> 
+
+    </div> 
+    <!-- closes main el -->
+
+<!-- template script should be outside the vue element (main) -->
+  <script id="tmpl" type="text/x-template">
+    <div id="modal" class="modal">
+
+
+        <div class="modal-container">
+                <span class="close">&times;</span>
+
+                    <!-- image-block -->
+                    <img class="large" :src="image.url">  
+                    <h3>{{image.title}}</h3>
+                    <span id="image-username"></span>
+                    <p class="image-description">{{image.description}}</p>
+
+                    <!--comments-block -->
+                    <form id="comment-form">
+                        <input v-model='comment' type="text" name='comment' placeholder='your comment'>
+                        <input v-model='username' type="username" name='username' placeholder='username'>
+                        <button @click='handleClick'>Submit</button>
+                    </form>
+                    <div id="comments">
+                    <p id=comment-block></p>
+                    <span id="comment-username"></span><span id="comment-time"></span>
+                    </div>
+        </div>
+  
     </div>
+    </script>
+
+
+
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
-    <script src="/index.js"></script>
+    <script src="./index.js"></script>
 
 </body>
 </html>
