@@ -52,13 +52,13 @@
 
 
                 <!--comments-block -->
-                <form v-for="comment in comments" id="comment-form">
+                <form v-for="item in comments" id="comment-form">
                     <input v-model='comment' type="text" name='comment' placeholder='your comment'>
                     <input v-model='username' type="username" name='username' placeholder='username'>
                     <button @click='handleClick'>Submit</button>
                 </form>
 
-                
+
                     <!-- image-block -->
                     <div v-for="item in imageInfos" class="image-info-block">
                     <img :id="item.id" :src="item.url" class="large" />  
