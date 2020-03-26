@@ -34,7 +34,6 @@ app.get("/images", (req, res) => {
     db.renderImages()
         .then(images => {
             res.json(images);
-            console.log("images in renderImages", images);
         })
         .catch(e => console.log("eror in renderImages", e));
 });
@@ -60,6 +59,16 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     console.log("file in index post upload: ", req.file);
     // gives you access to the user input
     console.log("user input: ", req.body);
+});
+
+app.get("/image/" + this.id, (req, res) => {
+    console.log("/image/id route runnin");
+    db.getImage()
+        .then(data => {
+            res.json(data);
+            console.log("data in getImage", data);
+        })
+        .catch(e => console.log("eror in renderImages", e));
 });
 
 app.listen(8080, () => console.log("listening from 8080"));

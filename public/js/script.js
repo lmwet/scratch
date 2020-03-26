@@ -8,13 +8,20 @@
             description: "",
             username: "",
             file: null,
-            currentImageId: null
+            currentImageId: location.hash.slice(1),
+            imageInfos: []
         }, //data
 
         mounted: function() {
             var self = this;
+
+            addEventListener("hashchange", function() {
+                self.imageId = location.hash.slice(1);
+            });
+
+            //get all images
             axios.get("/images").then(function(response) {
-                console.log("response from /images: ", response.data.rows);
+                // console.log("response from /images: ", response.data.rows);
                 self.images = response.data.rows;
             });
         },
@@ -25,7 +32,6 @@
                 // 'this' allows me to see all the properties of data
                 // console.log("this! ", this); //this contains the filename
 
-                // we NEED to use FormData to send a file to the server
                 var formData = new FormData();
                 formData.append("title", this.title);
                 formData.append("description", this.description);
@@ -37,7 +43,6 @@
                 axios
                     .post("/upload", formData)
                     .then(function(resp) {
-                        // console.log("resp from POST /uplaod: ", resp);
                         self.images.unshift(resp.data.rows[0]);
                     })
                     .catch(function(err) {
@@ -51,28 +56,14 @@
             },
 
             //the click on the image sent an event to set the prop currentImageId as the current image one
-            openModal: function(e) {
-                e.preventDefault();
-
-                let currentUrl = e.target.getAttribute("src");
-
-                this.currentImageId = this.images.find(
-                    image => image.url == currentUrl
-                ).id;
+            openModal: function(imageId) {
+                this.currentImageId = imageId;
                 console.log("this in Openmodal", this); // working!!
-
-                // axios
-                //     .get("/image")
-                //     .then(function(response) {
-                //         console.log("response from /images: ", this.images);
-                //         // what should i do here to get the image id, a db query???
-                //     })
-                //     .catch(function(err) {
-                //         console.log("err in post /image: ", err);
-                //     });
             },
-            closeModal: function(e) {
-                e.preventDefault();
+            closeModal: function() {
+                location.hash = "";
+
+                history.replaceState(null, null, " ");
             }
         } //closes methods
     });

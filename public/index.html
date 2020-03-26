@@ -26,7 +26,9 @@
 
         <div class="container" >
             <li v-for='image in images' class="card">
-            <img @click='openModal' class="small" :src="image.url">
+                <a :href="'#' + image.id">
+            <img class="small" :src="image.url">
+        </a>
             <p class="title">{{image.title}}</p>
         </li>
         </div>
@@ -49,11 +51,12 @@
                 <span class="close">&times;</span>
 
                     <!-- image-block -->
-                    <img v-for="image in images" v-bind:id="image.id" v-bind::src="image.url" class="large" />  
-                    <h3 v-for="image in images">{{image.title}}</h3>
-                    <span id="image-username" v-for="image in images">{{image.username}}</span>
-                    <p class="image-description" v-for="image in images">{{image.description}}</p>
-
+                    <div v-for="item in imageInfos" class="image-info-block">
+                    <img v-bind:id="image.id" v-bind::src="image.url" class="large" />  
+                    <h3>{{image.title}}</h3>
+                    <span id="image-username">{{image.username}}</span>
+                    <p id="image-description">{{image.description}}</p>
+                    </div>
                     <!--comments-block -->
                     <form id="comment-form">
                         <input v-model='comment' type="text" name='comment' placeholder='your comment'>
@@ -76,6 +79,6 @@
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="./index.js"></script>
-
+    <script src="js/image-modal.js"></script>
 </body>
 </html>

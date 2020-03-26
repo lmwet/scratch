@@ -19,7 +19,20 @@ exports.addImage = (title, description, username, url) => {
     const q = `INSERT into images (title, description, username, url)
     VALUES ($1, $2, $3, $4)
     RETURNING *`;
-    console.log("query from addimages", q);
     const params = [title, description, username, url];
+    return db.query(q, params);
+};
+
+exports.getImage = id => {
+    const q = `SELECT 
+    id,
+    title, 
+    description,
+    username,
+    url
+    FROM
+    images
+    WHERE id = $1;`;
+    const params = [id];
     return db.query(q, params);
 };
