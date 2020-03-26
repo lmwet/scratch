@@ -57,10 +57,11 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
-app.get("/image", (req, res) => {
+app.get("/image/" + this.id, (req, res) => {
     // not working
-    console.log("/image/id route runnin", req);
-    db.getImage()
+    console.log("request on get image/id", req);
+    let param = req.query.imageId;
+    db.getImage(param)
         .then(data => {
             res.json(data);
             console.log("data in getImage", data);

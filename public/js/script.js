@@ -57,12 +57,11 @@
 
             //the click on the image sent an event to set the prop imageId as the current image one
             openModal: function(imageId) {
-                this.currentImageId = imageId;
+                this.imageId = imageId;
                 console.log("this in Openmodal", this); // working!!
             },
             closeModal: function() {
                 location.hash = "";
-
                 history.replaceState(null, null, " ");
             }
         } //closes methods

@@ -52,10 +52,10 @@
 
                     <!-- image-block -->
                     <div v-for="item in imageInfos" class="image-info-block">
-                    <img v-bind:id="image.id" v-bind::src="image.url" class="large" />  
-                    <h3>{{image.title}}</h3>
-                    <span id="image-username">{{image.username}}</span>
-                    <p id="image-description">{{image.description}}</p>
+                    <img v-bind:id="item.id" v-bind::src="item.url" class="large" />  
+                    <h3>{{item.title}}</h3>
+                    <span id="image-username">{{item.username}}</span>
+                    <p id="image-description">{{item.description}}</p>
                     </div>
                     <!--comments-block -->
                     <form id="comment-form">

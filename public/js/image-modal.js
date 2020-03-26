@@ -1,10 +1,10 @@
 Vue.component("image-modal", {
     template: "#tmpl",
-    props: ["id"],
+    props: ["imageId"],
 
     data: function() {
         return {
-            id: this.id,
+            id: this.imageId,
             title: "",
             description: "",
             username: "",
@@ -22,22 +22,26 @@ Vue.component("image-modal", {
 
         //req for image infos
         axios
-            .get("/image/" + self.id)
+            .get("/image/" + self.imageId)
             .then(function(resp) {
+                params: {
+                    imageId: self.imageId;
+                }
                 //lets not show an empty page but close the modal instead
                 console.log("resp from get req in image modal: ", resp);
-                // self.imageInfos = resp.data;
+                self.imageInfos = resp.data.rows[0];
             })
             .catch(function(err) {
                 console.log("err in get image ", err);
                 //or close the modal HERE
             });
+
         //req for comments
         axios
             .get("/comments/" + self.id)
             .then(function(resp) {
                 console.log("resp from get req in image modal: ", resp);
-                self.comments = resp.data;
+                self.comments = resp.data.rows[0];
             })
             .catch(function(err) {
                 console.log("err in get comments ", err);
