@@ -55,20 +55,17 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             console.log("err in add image", err);
             res.sendStatus(500);
         });
-    //send the url of the image as a response
-    console.log("file in index post upload: ", req.file);
-    // gives you access to the user input
-    console.log("user input: ", req.body);
 });
 
-app.get("/image/" + this.id, (req, res) => {
-    console.log("/image/id route runnin");
+app.get("/image", (req, res) => {
+    // not working
+    console.log("/image/id route runnin", req);
     db.getImage()
         .then(data => {
             res.json(data);
             console.log("data in getImage", data);
         })
-        .catch(e => console.log("eror in renderImages", e));
+        .catch(e => console.log("eror in get image index", e));
 });
 
 app.listen(8080, () => console.log("listening from 8080"));

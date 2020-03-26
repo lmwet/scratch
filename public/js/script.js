@@ -8,7 +8,7 @@
             description: "",
             username: "",
             file: null,
-            currentImageId: location.hash.slice(1),
+            imageId: location.hash.slice(1),
             imageInfos: []
         }, //data
 
@@ -55,7 +55,7 @@
                 this.file = e.target.files[0];
             },
 
-            //the click on the image sent an event to set the prop currentImageId as the current image one
+            //the click on the image sent an event to set the prop imageId as the current image one
             openModal: function(imageId) {
                 this.currentImageId = imageId;
                 console.log("this in Openmodal", this); // working!!
