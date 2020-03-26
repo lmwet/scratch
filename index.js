@@ -39,7 +39,6 @@ app.get("/images", (req, res) => {
 });
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-    // insert a row in images table for the new image
     let imageUrl = conf.s3Url + req.file.filename;
 
     db.addImage(
@@ -57,14 +56,24 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
-app.get("/image/" + this.id, (req, res) => {
-    // not working
-    console.log("request on get image/id", req);
-    let param = req.query.imageId;
+app.get("/image/:id", (req, res) => {
+    let param = req.params.id;
+    console.log("req.params on get image/id", req.params);
     db.getImage(param)
         .then(data => {
             res.json(data);
             console.log("data in getImage", data);
+        })
+        .catch(e => console.log("eror in get image index", e));
+});
+
+app.get("/comments/:id", (req, res) => {
+    let param = req.params.id;
+    console.log("req.params on get comments/id", req.params);
+    db.getComments(param)
+        .then(comments => {
+            res.json(comments);
+            console.log("comments in getcomments", comments);
         })
         .catch(e => console.log("eror in get image index", e));
 });

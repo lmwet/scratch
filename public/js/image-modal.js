@@ -1,15 +1,18 @@
 Vue.component("image-modal", {
     template: "#tmpl",
-    props: ["imageId"],
+    props: ["id"],
 
     data: function() {
         return {
-            id: this.imageId,
+            imageInfos: [],
+            url: "",
             title: "",
             description: "",
             username: "",
-            created_at: "",
-            comments: []
+            comments: [],
+            text: "",
+            image_id: "",
+            created_at: ""
         };
     },
 
@@ -20,31 +23,42 @@ Vue.component("image-modal", {
     mounted: function() {
         var self = this;
 
+        console.log("this.id", this.id); // now = image_id
+        console.log("imageInfos", this.imageInfos);
+
         //req for image infos
         axios
-            .get("/image/" + self.imageId)
+            .get("/image/" + self.id)
             .then(function(resp) {
-                params: {
-                    imageId: self.imageId;
-                }
                 //lets not show an empty page but close the modal instead
                 console.log("resp from get req in image modal: ", resp);
-                self.imageInfos = resp.data.rows[0];
+                self.imageInfos = resp.data[0];
             })
             .catch(function(err) {
                 console.log("err in get image ", err);
                 //or close the modal HERE
             });
 
-        //req for comments
+        //req for get comments
         axios
             .get("/comments/" + self.id)
             .then(function(resp) {
-                console.log("resp from get req in image modal: ", resp);
+                console.log("resp from get comments in img-modal: ", resp);
                 self.comments = resp.data.rows[0];
             })
             .catch(function(err) {
                 console.log("err in get comments ", err);
+            });
+
+        //req for posting a comment
+        axios
+            .post("/comment/" + self.id)
+            .then(function(resp) {
+                console.log("resp from get req in image modal: ", resp);
+                self.comments.unshift(resp.data.rows[0]);
+            })
+            .catch(function(err) {
+                console.log("err in post comment ", err);
             });
     }
 

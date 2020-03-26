@@ -36,7 +36,7 @@
 
 <image-modal 
     v-if="imageId"
-    id="imageId"
+    :id="imageId"
     @close= "closeModal"></image-modal> 
 
     </div> 
@@ -50,28 +50,29 @@
         <div class="modal-container">
                 <span class="close">&times;</span>
 
-
-                <!--comments-block -->
-                <form v-for="comment in comments" id="comment-form">
-                    <input v-model='comment' type="text" name='comment' placeholder='your comment'>
-                    <input v-model='username' type="username" name='username' placeholder='username'>
+                <form id="comment-form">
+                    <input v-model='comment-text' type="text" name='comment' placeholder='your comment'>
+                    <input v-model='comment-username' type="username" name='username' placeholder='username'>
                     <button @click='handleClick'>Submit</button>
-                </form>
+                    </form>
 
-                
                     <!-- image-block -->
-                    <div v-for="item in imageInfos" class="image-info-block">
-                    <img :id="item.id" :src="item.url" class="large" />  
-                    <h3>{{item.title}}</h3>
-                    <span id="image-username">{{item.username}}</span>
-                    <p id="image-description">{{item.description}}</p>
+                    <div class="image-info-block">
+                    <img :id="imageInfo.id" :src="imageInfo.url" class="large" />  
+                    <h3>{{imageInfo.title}}</h3>
+                    <span id="image-username">{{imageInfo.username}}</span>
+                    <p id="image-description">{{imageInfo.description}}</p>
                     </div>
 
+                    <!-- comments-block -->
+                    <div v-for="comment in comments" id="comments">
+                   
+                        <span id="comment-username">{{comment.username}}</span>
+                        <p id="comment-text">{{comment.text}}</p>
+                    <p id="comment-time">{{comment.created_at}}</p>
                     
-
-                    <div id="comments">
-                    <p id=comment-block></p>
-                    <span id="comment-username"></span><span id="comment-time"></span>
+                   
+                   
                     </div>
         </div>
   

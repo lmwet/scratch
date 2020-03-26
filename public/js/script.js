@@ -8,8 +8,7 @@
             description: "",
             username: "",
             file: null,
-            imageId: location.hash.slice(1),
-            imageInfos: []
+            imageId: location.hash.slice(1)
         }, //data
 
         mounted: function() {

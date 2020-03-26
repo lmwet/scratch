@@ -36,3 +36,17 @@ exports.getImage = id => {
     const params = [id];
     return db.query(q, params);
 };
+
+exports.getComments = id => {
+    const q = `SELECT 
+    id,
+    username,
+    text,
+    created_at,
+    image_id
+    FROM
+    comments
+    WHERE id = $1;`;
+    const params = [id];
+    return db.query(q, params);
+};
