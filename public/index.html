@@ -12,24 +12,24 @@
 
 <!-- <h3 style="color: pink" v-if='seen'>Hallouu it meeey</h3>
 <h3 v-else> no its mey</h3> -->
-<h2>
-    {{name.toUpperCase()}}
-</h2>
+        <h2>
+            {{name.toUpperCase()}}
+        </h2>
 
-<form id='main-form'>
-    <input v-model='title' type="text" name='title' placeholder='title'>
-    <input v-model='description' type="text" name='description' placeholder='description'>
-    <input v-model='username' type="text" name='username' placeholder='username'>
-    <input @change='handleChange' type="file" name='file' accept='image/*'>
-    <button @click='handleClick'>Upload</button>
-</form>
+        <form id='main-form'>
+            <input v-model='title' type="text" name='title' placeholder='title'>
+            <input v-model='description' type="text" name='description' placeholder='description'>
+            <input v-model='username' type="text" name='username' placeholder='username'>
+            <input @change='handleChange' type="file" name='file' accept='image/*'>
+            <button @click='handleClick'>Upload</button>
+        </form>
 
-<div class="container" >
-    <li v-for='image in images' class="card">
-    <img @click='openModal' class="small" :src="image.url">
-    <p class="title">{{image.title}}</p>
-</li>
-</div>
+        <div class="container" >
+            <li v-for='image in images' class="card">
+            <img @click='openModal' class="small" :src="image.url">
+            <p class="title">{{image.title}}</p>
+        </li>
+        </div>
 
 
 <image-modal 
@@ -42,17 +42,17 @@
 
 <!-- template script should be outside the vue element (main) -->
   <script id="tmpl" type="text/x-template">
-    <div id="modal" class="modal">
 
+    <div id="modal" class="modal">
 
         <div class="modal-container">
                 <span class="close">&times;</span>
 
                     <!-- image-block -->
-                    <img class="large" :src="image.url">  
-                    <h3>{{image.title}}</h3>
-                    <span id="image-username"></span>
-                    <p class="image-description">{{image.description}}</p>
+                    <img v-for="image in images" v-bind:id="image.id" v-bind::src="image.url" class="large" />  
+                    <h3 v-for="image in images">{{image.title}}</h3>
+                    <span id="image-username" v-for="image in images">{{image.username}}</span>
+                    <p class="image-description" v-for="image in images">{{image.description}}</p>
 
                     <!--comments-block -->
                     <form id="comment-form">
@@ -67,6 +67,7 @@
         </div>
   
     </div>
+    
     </script>
 
 

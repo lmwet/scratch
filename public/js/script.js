@@ -9,12 +9,12 @@
             username: "",
             file: null,
             currentImageId: null
-        }, // watch out: COMA  data
+        }, //data
 
         mounted: function() {
             var self = this;
             axios.get("/images").then(function(response) {
-                // console.log("response from /images: ", response.data.rows);
+                console.log("response from /images: ", response.data.rows);
                 self.images = response.data.rows;
             });
         },
@@ -53,22 +53,26 @@
             //the click on the image sent an event to set the prop currentImageId as the current image one
             openModal: function(e) {
                 e.preventDefault();
-                console.log("this in openModal ", this);
-                console.log("e.target", e.target); // i get the url
 
-                axios
-                    .get("/image")
-                    .then(function(response) {
-                        // console.log("response from /images: ", response.data.rows);
-                        this.currentImageId = response.data.rows[0].id; // what should i do here to get the image id, a db query???
-                    })
-                    .catch(function(err) {
-                        console.log("err in post /image: ", err);
-                    });
+                let currentUrl = e.target.getAttribute("src");
+
+                this.currentImageId = this.images.find(
+                    image => image.url == currentUrl
+                ).id;
+                console.log("this in Openmodal", this); // working!!
+
+                // axios
+                //     .get("/image")
+                //     .then(function(response) {
+                //         console.log("response from /images: ", this.images);
+                //         // what should i do here to get the image id, a db query???
+                //     })
+                //     .catch(function(err) {
+                //         console.log("err in post /image: ", err);
+                //     });
             },
             closeModal: function(e) {
                 e.preventDefault();
-                this.currentImageId = null;
             }
         } //closes methods
     });

@@ -5,6 +5,7 @@ const db = spicedPg(
 
 exports.renderImages = () => {
     const q = `SELECT 
+    id,
     url, 
     title,
     description
