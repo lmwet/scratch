@@ -36,7 +36,7 @@
 
 <image-modal 
     v-if="imageId" :id='imageId'
-    @close= "closeModal"></image-modal> 
+    @pleaseclosemodal='closemodal'></image-modal> 
 
     </div> 
     <!-- closes main el -->
@@ -47,7 +47,7 @@
     <div id="modal" class="modal">
 
         <div class="modal-container">
-                <span class="close">&times;</span>
+                <span @click="pleaseclosemodal" class="close">&times;</span>
 
 
                 <!--comments-block -->
@@ -68,7 +68,7 @@
 
                     <div  v-for='comment in comments'class="comment">
                     <p :id=comment>{{comment.comment}}</p>
-                    <span :id="username">{{comment.username}}</span><span :id="created_at">{{comment.created_at}}</span>
+                    <span :id="username">{{comment.username}}</span><span :id="created_at">    {{comment.created_at}}</span>
                     </div>
         </div>
   

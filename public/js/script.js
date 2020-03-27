@@ -59,7 +59,8 @@
                 this.imageId = imageId;
                 console.log("this in Openmodal", this); // working!!
             },
-            closeModal: function() {
+            closemodal: function() {
+                console.log("close mod runnin");
                 location.hash = "";
                 history.replaceState(null, null, " ");
             }

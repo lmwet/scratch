@@ -60,8 +60,9 @@ Vue.component("image-modal", {
     },
 
     methods: {
-        closeModal: function(e) {
-            this.$emit("closeModal", this.id, e.target.value);
+        pleaseclosemodal: function() {
+            console.log("this is closeModal", this);
+            this.$emit("pleaseclosemodal");
         },
 
         handleCommentClick: function(e) {
@@ -97,10 +98,5 @@ Vue.component("image-modal", {
                     console.log("err in post comment ", err);
                 });
         }
-
-        // handleChange: function(e) {
-        //     //For the file input, you will have to handle the "change" event and manually set a property on the instance to contain the file.
-        //     this.file = e.target.files[0];
-        // }
     } // methods
 });
