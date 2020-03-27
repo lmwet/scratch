@@ -37,11 +37,11 @@ exports.getImage = id => {
     return db.query(q, params);
 };
 
-exports.addComment = (imageId, comment, username, timestamp) => {
+exports.addComment = (image_id, comment, username, created_at) => {
     const q = `INSERT into comments (image_id, text, username, created_at)
     VALUES ($1, $2, $3, $4)
     RETURNING *`;
-    const params = [imageId, comment, username, timestamp];
+    const params = [image_id, comment, username, created_at];
     return db.query(q, params);
 };
 

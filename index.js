@@ -68,10 +68,10 @@ app.get("/image/:id", (req, res) => {
 });
 
 app.post("comment/:id", (req, res) => {
-    let param = req.params.id;
+    let image_id = req.params.id;
     console.log("req.params on get comments", req.params);
     db.addComment(
-        param,
+        image_id,
         req.body.comment,
         req.body.username,
         req.body.ceated_at
