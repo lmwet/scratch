@@ -41,6 +41,22 @@ Vue.component("image-modal", {
                 console.log("err in get image ", err);
                 //or close the modal HERE
             });
+
+        //req for comments
+        axios
+            .get("/comments/" + self.id)
+            .then(function(resp) {
+                //lets not show an empty page but close the modal instead
+                console.log(
+                    "resp.data.rows from get comments: ",
+                    resp.data.rows
+                );
+                self.comments = resp.data.rows;
+            })
+            .catch(function(err) {
+                console.log("err in get comments in image modal", err);
+                //or close the modal HERE
+            });
     },
 
     methods: {
@@ -53,10 +69,15 @@ Vue.component("image-modal", {
 
             // 'this' allows me to see all the properties of data
             console.log("this in click comment ", this);
-
+            var comment = {};
+            comment.id = this.id;
+            comment.username = this.username;
+            comment.comment = this.comment;
             //req for posting a comment
+
+            var self = this;
             axios
-                .post("/comment/" + this.id) // not running
+                .post("/comment/", comment) // not running
                 .then(function(resp) {
                     console.log(
                         "resp from post comment in image modal: ",
@@ -64,14 +85,13 @@ Vue.component("image-modal", {
                     );
 
                     console.log("this in post comment", this);
-                    self.comments = resp.data.rows[0];
-                    self.comments.unshift(resp.data.rows[0]);
+                    // self.comments = resp.data.rows[0];
+                    self.comments.unshift(comment);
                     console.log(
                         "comments array after post comment",
-                        self.comments
+                        self.comment
                     );
                     self.image_id = this.id;
-                    // created_at: ""
                 })
                 .catch(function(err) {
                     console.log("err in post comment ", err);

@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS comments;
 
-CREATE TABLE comments(
+CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     image_id INTEGER NOT NULL REFERENCES images(id),
     comment VARCHAR NOT NULL,

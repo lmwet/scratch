@@ -70,6 +70,13 @@ button {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
+div.comment {
+    border: darkblue 1px dashed;
+    border-radius: 15px;
+    max-width: 40vw;
+    padding: 10px;
+    margin-bottom: 5px;
+}
 .modal-container {
     background-color: #fefefe;
     margin: 20px auto; /* 15% from the top and centered */

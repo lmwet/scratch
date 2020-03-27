@@ -66,8 +66,6 @@
                     <p id="image-description">{{imageInfos.description}}</p>
                     </div>
 
-                    
-
                     <div  v-for='comment in comments'class="comment">
                     <p :id=comment>{{comment.comment}}</p>
                     <span :id="username">{{comment.username}}</span><span :id="created_at">{{comment.created_at}}</span>

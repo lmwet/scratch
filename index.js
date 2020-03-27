@@ -27,7 +27,10 @@ const uploader = multer({
 const express = require("express");
 const app = express();
 const db = require("./utils/db.js");
+
 app.use(express.static("public")); // by default will look for a index.js file
+app.use(express.static("public"));
+app.use(express.json());
 
 app.get("/images", (req, res) => {
     console.log("/images route has been hit!");
@@ -62,36 +65,29 @@ app.get("/image/:id", (req, res) => {
     db.getImage(param)
         .then(data => {
             res.json(data);
-            console.log("data in getImage", data);
         })
         .catch(e => console.log("eror in get image index", e));
 });
 
-app.post("comment/:id", (req, res) => {
+app.post("/comment/", (req, res) => {
+    let image_id = req.body.id;
+    console.log("req.body on get comments", req.body);
+    db.addComment(image_id, req.body.comment, req.body.username)
+        .then(comments => {
+            res.json(comments);
+        })
+        .catch(e => console.log("eror in post comment index", e));
+});
+
+app.get("/comments/:id", (req, res) => {
     let image_id = req.params.id;
     console.log("req.params on get comments", req.params);
-    db.addComment(
-        image_id,
-        req.body.comment,
-        req.body.username,
-        req.body.ceated_at
-    )
+    db.getComments(image_id)
         .then(comments => {
             res.json(comments);
             console.log("comments in getcomments", comments);
         })
-        .catch(e => console.log("eror in get image index", e));
-});
-
-app.get("comments", (req, res) => {
-    let param = req.params.id;
-    console.log("req.params on get comments", req.params);
-    db.getComments(param)
-        .then(comments => {
-            res.json(comments);
-            console.log("comments in getcomments", comments);
-        })
-        .catch(e => console.log("eror in get image index", e));
+        .catch(e => console.log("eror in get comments index", e));
 });
 
 app.listen(8080, () => console.log("listening from 8080"));
