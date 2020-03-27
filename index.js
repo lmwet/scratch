@@ -67,9 +67,25 @@ app.get("/image/:id", (req, res) => {
         .catch(e => console.log("eror in get image index", e));
 });
 
-app.get("/comments/:id", (req, res) => {
+app.post("comment/:id", (req, res) => {
     let param = req.params.id;
-    console.log("req.params on get comments/id", req.params);
+    console.log("req.params on get comments", req.params);
+    db.addComment(
+        param,
+        req.body.comment,
+        req.body.username,
+        req.body.ceated_at
+    )
+        .then(comments => {
+            res.json(comments);
+            console.log("comments in getcomments", comments);
+        })
+        .catch(e => console.log("eror in get image index", e));
+});
+
+app.get("comments", (req, res) => {
+    let param = req.params.id;
+    console.log("req.params on get comments", req.params);
     db.getComments(param)
         .then(comments => {
             res.json(comments);

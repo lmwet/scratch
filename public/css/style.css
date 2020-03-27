@@ -39,8 +39,7 @@ img.small {
 }
 
 img.large {
-    min-width: 80vw;
-    max-width: 80vw;
+    max-width: 50vw;
 }
 p {
     color: #151e3f;

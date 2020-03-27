@@ -35,8 +35,7 @@
 
 
 <image-modal 
-    v-if="imageId"
-    id="imageId"
+    v-if="imageId" :id='imageId'
     @close= "closeModal"></image-modal> 
 
     </div> 
@@ -52,26 +51,26 @@
 
 
                 <!--comments-block -->
-                <form v-for="item in comments" id="comment-form">
+                <form id="comment-form">
                     <input v-model='comment' type="text" name='comment' placeholder='your comment'>
                     <input v-model='username' type="username" name='username' placeholder='username'>
-                    <button @click='handleClick'>Submit</button>
+                    <button @click='handleCommentClick'>Submit</button>
                 </form>
 
 
                     <!-- image-block -->
-                    <div v-for="item in imageInfos" class="image-info-block">
-                    <img :id="item.id" :src="item.url" class="large" />  
-                    <h3>{{item.title}}</h3>
-                    <span id="image-username">{{item.username}}</span>
-                    <p id="image-description">{{item.description}}</p>
+                    <div :id="imageInfos" class="image-info-block">
+                    <img :id="imageInfos.id" :src="imageInfos.url" :alt="imageInfos.description" class="large" />  
+                    <h3>{{imageInfos.title}}</h3>
+                    <em id="image-username">by {{imageInfos.username}}</em>
+                    <p id="image-description">{{imageInfos.description}}</p>
                     </div>
 
                     
 
-                    <div id="comments">
-                    <p id=comment-block></p>
-                    <span id="comment-username"></span><span id="comment-time"></span>
+                    <div  v-for='comment in comments'class="comment">
+                    <p :id=comment>{{comment.comment}}</p>
+                    <span :id="username">{{comment.username}}</span><span :id="created_at">{{comment.created_at}}</span>
                     </div>
         </div>
   
