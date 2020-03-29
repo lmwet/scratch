@@ -89,5 +89,28 @@ app.get("/comments/:id", (req, res) => {
         })
         .catch(e => console.log("eror in get comments index", e));
 });
+app.get("/more/:lastId", (req, res) => {
+    console.log("req.params on get /more", req.params);
+    let lastId = req.params.lastId;
+    db.getMore(lastId)
+        .then(moreImages => {
+            res.json(moreImages);
+            console.log("moreImages", moreImages);
+
+            console.log("moreImages[0].lowestId", moreImages[0].lowestId);
+
+            const smallestId = moreImages.find(
+                ({ id }) => id === moreImages[0].lowestId
+            );
+            console.log("smallestId", smallestId);
+
+            if (smallestId != undefined) {
+                const moreButton = window.document.getElementById("more");
+                console.log(moreButton);
+                moreButton.style.display = "none";
+            }
+        })
+        .catch(e => console.log("eror in get moreImages index", e));
+});
 
 app.listen(8080, () => console.log("listening from 8080"));

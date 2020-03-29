@@ -8,7 +8,8 @@
             description: "",
             username: "",
             file: null,
-            imageId: location.hash.slice(1)
+            imageId: location.hash.slice(1),
+            lastId: ""
         }, //data
 
         mounted: function() {
@@ -20,8 +21,8 @@
 
             //get all images
             axios.get("/images").then(function(response) {
-                // console.log("response from /images: ", response.data.rows);
                 self.images = response.data.rows;
+                console.log("self.images from /images: ", self.images);
             });
         },
 
@@ -60,9 +61,40 @@
                 console.log("this in Openmodal", this); // working!!
             },
             closemodal: function() {
-                console.log("close mod runnin");
                 location.hash = "";
                 history.replaceState(null, null, " ");
+            },
+            grabMore: function() {
+                console.log("grabmore runnin");
+                let self = this;
+                // getting lastimage's id on screen and setting its value to lastId data prop
+                self.lastId = self.images[self.images.length - 1].id;
+                console.log("self.lastId from /images: ", self.lastId);
+                axios
+                    .get("/more/" + self.lastId)
+                    .then(function(resp) {
+                        console.log("response from get /more: ", resp.data);
+                        self.images = resp.data;
+                        console.log("self.images from /more: ", self.images);
+                        console.log(
+                            "self.images[0].lowestId",
+                            self.images[0].lowestId
+                        );
+
+                        const smallestId = self.images.find(
+                            ({ id }) => id === self.images[0].lowestId
+                        );
+                        console.log("smallestId", smallestId);
+
+                        if (smallestId != undefined) {
+                            const moreButton = document.getElementById("more");
+                            console.log(moreButton);
+                            moreButton.style.display = "none";
+                        }
+                    })
+                    .catch(function(err) {
+                        console.log("err in get more script: ", err);
+                    });
             }
         } //closes methods
     });

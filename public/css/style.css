@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #e0e0e0;
+    background-image: url("/myOwnImages/texturenoire.png");
 }
 div.container {
     padding: 40px 80px;
@@ -24,12 +24,13 @@ div.container {
 }
 li.card {
     padding: 2%;
+    background-color: whitesmoke;
     list-style: none;
     height: auto;
     width: 25vw;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
-    box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
     margin: 15px;
 }
 img.small {
@@ -52,11 +53,38 @@ form {
     justify-content: center;
 }
 input {
-    padding: 5px;
+    padding: 10px;
     margin: 2em;
+    background-color: white;
+    border: transparent;
+    border-bottom: black solid 2px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+}
+input#file {
+    border-bottom: transparent;
+    box-shadow: none;
 }
 button {
     padding: 5px;
+    background-color: white;
+    /* -webkit-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1);
+    box-shadow: 10px 10px 5px 0px rgba(133, 176, 222, 1); */
+    font-size: larger;
+    text-transform: uppercase;
+    border-radius: 15px;
+    border: black solid 2px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    cursor: pointer;
+}
+button#more {
+    align-self: center;
+    margin: 2em;
+    margin-left: 20%;
 }
 .modal {
     position: fixed;
@@ -83,6 +111,7 @@ div.comment {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 15px;
 }
 .close {
     color: #aaa;

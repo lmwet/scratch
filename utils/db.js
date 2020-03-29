@@ -4,14 +4,11 @@ const db = spicedPg(
 );
 
 exports.renderImages = () => {
-    const q = `SELECT 
-    id,
-    url, 
-    title,
-    description
+    const q = `SELECT *
     FROM
     images
-    ORDER BY id DESC;`;
+    ORDER BY id DESC
+    LIMIT 9;`;
     return db.query(q);
 };
 
@@ -57,3 +54,18 @@ exports.getComments = id => {
     const params = [id];
     return db.query(q, params);
 };
+
+exports.getMore = lastId =>
+    db
+        .query(
+            `SELECT * , (
+    SELECT id FROM images
+    ORDER BY id ASC
+    LIMIT 1
+    ) AS "lowestId" FROM images
+    WHERE id < $1
+    ORDER BY id DESC
+    LIMIT 9`,
+            [lastId]
+        )
+        .then(({ rows }) => rows);
