@@ -69,3 +69,15 @@ exports.getMore = lastId =>
             [lastId]
         )
         .then(({ rows }) => rows);
+
+exports.deleteImage = imageId => {
+    const q = `DELETE FROM images
+    WHERE id = $1`;
+
+    const params = [imageId];
+    return db.query(q, params);
+};
+// DELETE T1, T2
+// FROM T1
+// INNER JOIN T2 ON T1.key = T2.key
+// WHERE condition;

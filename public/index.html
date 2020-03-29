@@ -18,9 +18,10 @@
 
         <form id='main-form'>
             <input v-model='title' type="text" name='title' placeholder='title'>
-            <input v-model='description' type="text" name='description' placeholder='description'>
+            <input v-model='description' type="text" name='description' id='description' placeholder='description'>
             <input v-model='username' type="text" name='username' placeholder='username'>
             <input @change='handleChange' type="file" name='file' id='file' accept='image/*'>
+            <!-- <input type="hidden" name="_csrf" value="{{csrfToken}}"> -->
             <button @click='handleClick'>Upload</button>
         </form>
 
@@ -53,8 +54,9 @@
 
                 <!--comments-block -->
                 <form id="comment-form">
-                    <input v-model='comment' type="text" name='comment' placeholder='your comment'>
+                    <input v-model='comment' type="text" name='comment' id="comment-field" placeholder='your comment'>
                     <input v-model='username' type="username" name='username' placeholder='username'>
+                    <!-- <input type="hidden" name="_csrf" value="{{csrfToken}}"> -->
                     <button @click='handleCommentClick'>Submit</button>
                 </form>
 
@@ -62,6 +64,7 @@
                     <!-- image-block -->
                     <div :id="imageInfos" class="image-info-block">
                     <img :id="imageInfos.id" :src="imageInfos.url" :alt="imageInfos.description" class="large" />  
+                    <button @click='deleteImage' id="delete" >Delete this image</button>
                     <h3>{{imageInfos.title}}</h3>
                     <em id="image-username">by {{imageInfos.username}}</em>
                     <p id="image-description">{{imageInfos.description}}</p>
@@ -69,7 +72,7 @@
 
                     <div  v-for='comment in comments'class="comment">
                     <p :id=comment>{{comment.comment}}</p>
-                    <span :id="username">{{comment.username}}</span><span :id="created_at">    {{comment.created_at}}</span>
+                    <span :id="username">{{comment.username}}</span><span :id="created_at">  {{comment.created_at}}</span>
                     </div>
         </div>
   

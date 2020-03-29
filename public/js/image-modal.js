@@ -31,10 +31,7 @@ Vue.component("image-modal", {
             .get("/image/" + self.id)
             .then(function(resp) {
                 //lets not show an empty page but close the modal instead
-                console.log(
-                    "resp.data.rows[0] from get req in image modal: ",
-                    resp.data.rows[0]
-                );
+
                 self.imageInfos = resp.data.rows[0];
             })
             .catch(function(err) {
@@ -47,10 +44,7 @@ Vue.component("image-modal", {
             .get("/comments/" + self.id)
             .then(function(resp) {
                 //lets not show an empty page but close the modal instead
-                console.log(
-                    "resp.data.rows from get comments: ",
-                    resp.data.rows
-                );
+
                 self.comments = resp.data.rows;
             })
             .catch(function(err) {
@@ -67,35 +61,42 @@ Vue.component("image-modal", {
 
         handleCommentClick: function(e) {
             e.preventDefault();
-
-            // 'this' allows me to see all the properties of data
-            console.log("this in click comment ", this);
+            //We create an object and insert it into
             var comment = {};
             comment.id = this.id;
             comment.username = this.username;
             comment.comment = this.comment;
-            //req for posting a comment
 
+            //posting a comment
             var self = this;
             axios
-                .post("/comment/", comment) // not running
-                .then(function(resp) {
-                    console.log(
-                        "resp from post comment in image modal: ",
-                        resp
-                    );
-
-                    console.log("this in post comment", this);
-                    // self.comments = resp.data.rows[0];
+                .post("/comment/", comment)
+                .then(function(comment) {
                     self.comments.unshift(comment);
-                    console.log(
-                        "comments array after post comment",
-                        self.comment
-                    );
                     self.image_id = this.id;
                 })
                 .catch(function(err) {
                     console.log("err in post comment ", err);
+                });
+        },
+
+        deleteImage: function() {
+            console.log("this in delete image in modql", this);
+            var self = this;
+            axios
+                .post("/delete/" + this.id)
+                .then(function(resp) {
+                    console.log("resp on delete image in modal", resp);
+
+                    self.image_id = this.id;
+                    console.log(
+                        "self.image_id in deleteimqge modql",
+                        self.image_id
+                    );
+                    self.pleaseclosemodal();
+                })
+                .catch(err => {
+                    console.log("err in delete image", err);
                 });
         }
     } // methods

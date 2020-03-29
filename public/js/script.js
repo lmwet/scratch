@@ -48,6 +48,8 @@
                     .catch(function(err) {
                         console.log("err in POST /upload: ", err);
                     });
+                var form = document.querySelector("#main-form");
+                form.reset();
             },
 
             handleChange: function(e) {

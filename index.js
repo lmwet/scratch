@@ -22,11 +22,29 @@ const uploader = multer({
     }
 });
 
-//////END MULTER NOILERPLATE /////////
+//////END MULTER BOILERPLATE /////////
 
 const express = require("express");
 const app = express();
 const db = require("./utils/db.js");
+// var compare = require("tsscmp");
+// const cookieSession = require("cookie-session");
+// const csurf = require("csurf");
+
+// app.use(
+//     cookieSession({
+//         secret: `I'm always angry.`,
+//         maxAge: 1000 * 60 * 60 * 24 * 7 * 6
+//     })
+// );
+
+app.use(
+    express.urlencoded({
+        extended: false
+    })
+);
+
+// app.use(csurf());
 
 app.use(express.static("public")); // by default will look for a index.js file
 app.use(express.static("public"));
@@ -34,6 +52,28 @@ app.use(express.json());
 
 app.get("/images", (req, res) => {
     console.log("/images route has been hit!");
+    ///////// BASIC AUTH ///////
+    // var auth = require("basic-auth");
+    // var credentials = auth(req);
+    // if (!credentials || !check(credentials.name, credentials.pass)) {
+    //     res.statusCode = 401;
+    //     res.setHeader("WWW-Authenticate", 'Basic realm="example"');
+    //     res.json("Access denied");
+    // } else {
+    //     res.json("Access granted");
+    // }
+
+    // // Basic function to validate credentials for example
+    // function check(name, pass) {
+    //     var valid = true;
+
+    //     // Simple method to prevent short-circut and use timing-safe compare
+    //     valid = compare(name, "john") && valid;
+    //     valid = compare(pass, "secret") && valid;
+
+    //     return valid;
+    // }
+
     db.renderImages()
         .then(images => {
             res.json(images);
@@ -61,7 +101,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 app.get("/image/:id", (req, res) => {
     let param = req.params.id;
-    console.log("req.params on get image/id", req.params);
     db.getImage(param)
         .then(data => {
             res.json(data);
@@ -71,7 +110,6 @@ app.get("/image/:id", (req, res) => {
 
 app.post("/comment/", (req, res) => {
     let image_id = req.body.id;
-    console.log("req.body on get comments", req.body);
     db.addComment(image_id, req.body.comment, req.body.username)
         .then(comments => {
             res.json(comments);
@@ -81,36 +119,32 @@ app.post("/comment/", (req, res) => {
 
 app.get("/comments/:id", (req, res) => {
     let image_id = req.params.id;
-    console.log("req.params on get comments", req.params);
     db.getComments(image_id)
         .then(comments => {
             res.json(comments);
-            console.log("comments in getcomments", comments);
         })
         .catch(e => console.log("eror in get comments index", e));
 });
 app.get("/more/:lastId", (req, res) => {
-    console.log("req.params on get /more", req.params);
     let lastId = req.params.lastId;
     db.getMore(lastId)
         .then(moreImages => {
             res.json(moreImages);
-            console.log("moreImages", moreImages);
-
-            console.log("moreImages[0].lowestId", moreImages[0].lowestId);
-
-            const smallestId = moreImages.find(
-                ({ id }) => id === moreImages[0].lowestId
-            );
-            console.log("smallestId", smallestId);
-
-            if (smallestId != undefined) {
-                const moreButton = window.document.getElementById("more");
-                console.log(moreButton);
-                moreButton.style.display = "none";
-            }
         })
         .catch(e => console.log("eror in get moreImages index", e));
+});
+
+app.post("/delete/:id", (req, res) => {
+    let imageId = req.params.id;
+    console.log("req.params on delete", req.params.id);
+    console.log("imageId on delete", imageId);
+
+    db.deleteImage(imageId)
+        .then(data => {
+            console.log("deleted image", data);
+            res.json(data);
+        })
+        .catch(e => console.log("eror in delete image index", e));
 });
 
 app.listen(8080, () => console.log("listening from 8080"));
