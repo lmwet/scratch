@@ -1,6 +1,7 @@
 const spicedPg = require("spiced-pg");
 const db = spicedPg(
-    "postgres:postgres:postgres:@localhost@localhost:5432/images"
+    process.env.DATABASE_URL ||
+        "postgres:postgres:postgres:@localhost@localhost:5432/images"
 );
 
 exports.renderImages = () => {
@@ -8,7 +9,7 @@ exports.renderImages = () => {
     FROM
     images
     ORDER BY id DESC
-    LIMIT 9;`;
+    LIMIT 12;`;
     return db.query(q);
 };
 

@@ -2,7 +2,7 @@
     new Vue({
         el: "#main",
         data: {
-            name: "Daily Sketch", //any info that we want to be updated instantly
+            name: "*Sketch Scratch'", //any info that we want to be updated instantly
             images: [],
             title: "",
             description: "",
@@ -23,6 +23,7 @@
             axios.get("/images").then(function(response) {
                 self.images = response.data.rows;
                 console.log("self.images from /images: ", self.images);
+                console.log(response.data.rows);
             });
         },
 

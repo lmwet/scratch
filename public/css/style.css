@@ -1,25 +1,28 @@
 @font-face {
     font-family: "AllOverAgain";
-    src: url(/public/all_over_again/AllOverAgain.ttf) format("ttf");
+    src: url("/public/all_over_again/AllOverAgain.ttf") format("ttf");
 }
 
 * {
     box-sizing: border-box;
 }
 h2 {
-    font-size: 5em;
-    font-family: "AllOverAgain";
-    color: #151e3f;
+    font-size: 4em;
+    font-family: "AllOverAgain", "Helvetica Neue", "Lato", "Segoe UI", Helvetica,
+        Arial, sans-serif;
+    color: #b116ac;
     font-weight: 300;
-    /* letter-spacing: 2px; */
     text-align: center;
 }
 body {
     font-family: "Source Sans Pro", sans-serif;
     display: flex;
+    color: #b116ac;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url(https://s3.amazonaws.com/spicedling/ZVe9ipfKui7xPxRP9uKIN7rn4UZB56Np.png);
+    background-attachment: fixed;
 }
 div.container {
     padding: 40px 80px;
@@ -44,7 +47,7 @@ img.large {
     max-width: 50vw;
 }
 p {
-    color: #151e3f;
+    color: #b116ac;
     font-weight: 300;
     line-height: normal;
 }
@@ -54,18 +57,31 @@ form {
     justify-content: center;
 }
 input {
-    padding: 10px;
+    padding: 15px;
     margin: 2em;
-    background-color: white;
+    color: white;
+    font-size: 15px;
     border: transparent;
-    border-bottom: black solid 2px;
+    background-color: transparent;
+    border-bottom: white solid 3px;
 }
 input#file {
     border-bottom: transparent;
     box-shadow: none;
+    padding-top: 5px;
+    color: #b116ac;
+    font-size: larger;
+    margin: 15px;
+    cursor: pointer;
 }
 input#comment-field {
     width: 28vw;
+    border-bottom: black solid 3px;
+    color: black;
+}
+input#user-field {
+    border-bottom: black solid 3px;
+    color: black;
 }
 #description {
     width: 30vw;
@@ -73,19 +89,30 @@ input#comment-field {
 button {
     padding-top: 5px;
     background-color: white;
+    color: #b116ac;
     font-size: larger;
     margin: 15px;
     border-radius: 15px;
     border: rgba(0, 0, 139, 0.728) 2px solid;
-    /* -webkit-box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475);
-    -moz-box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475);
-    box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475); */
+    font-family: "AllOverAgain";
     cursor: pointer;
 }
 button#more {
     align-self: center;
     margin: 2em;
     margin-left: 20%;
+}
+.inputfile {
+    max-width: 20%;
+    font-size: 1.15rem;
+    /* 20px */
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    margin-right: 0;
+    background-color: transparent;
 }
 .modal {
     position: fixed;
@@ -117,8 +144,7 @@ div.comment {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 38px;
 }
 .close:hover,
 .close:focus {
@@ -133,6 +159,7 @@ div.comment {
         display: block;
         height: auto;
         width: 90vw;
+        text-align: center;
     }
     div.modal-container {
         margin-top: 6%;
@@ -150,12 +177,23 @@ div.comment {
     input {
         min-width: 60vw;
     }
+    input#file {
+        border-bottom: transparent;
+        border-radius: 15px;
+        box-shadow: none;
+        padding-top: 5px;
+        color: #b116ac;
+        font-size: larger;
+        margin: 15px;
+        cursor: pointer;
+        background-color: white;
+    }
     h2 {
-        font-size: 6em;
+        font-size: 8em;
     }
     button {
         min-width: 20vw;
-        margin-left: 24vw;
+        margin-left: 34vw;
         padding: 15px;
         display: block;
         text-transform: uppercase;
@@ -167,5 +205,8 @@ div.comment {
         border: none;
         max-width: 4vw;
         margin-left: 0;
+    }
+    p {
+        font-size: 36px;
     }
 }

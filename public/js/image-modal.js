@@ -23,15 +23,11 @@ Vue.component("image-modal", {
     mounted: function() {
         var self = this;
 
-        console.log("this.id", this.id);
-        console.log("imageInfos", self.imageInfos);
-
         //req for image infos
         axios
             .get("/image/" + self.id)
             .then(function(resp) {
                 //lets not show an empty page but close the modal instead
-
                 self.imageInfos = resp.data.rows[0];
             })
             .catch(function(err) {
@@ -78,18 +74,11 @@ Vue.component("image-modal", {
         },
 
         deleteImage: function() {
-            console.log("this in delete image in modql", this);
             var self = this;
             axios
                 .post("/delete/" + this.id)
                 .then(function(resp) {
-                    console.log("resp on delete image in modal", resp);
-
                     self.image_id = this.id;
-                    console.log(
-                        "self.image_id in deleteimqge modql",
-                        self.image_id
-                    );
                     self.pleaseclosemodal();
                 })
                 .catch(err => {

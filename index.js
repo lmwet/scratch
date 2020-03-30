@@ -147,4 +147,4 @@ app.post("/delete/:id", (req, res) => {
         .catch(e => console.log("eror in delete image index", e));
 });
 
-app.listen(8080, () => console.log("listening from 8080"));
+app.listen(process.env.PORT || 8080);
