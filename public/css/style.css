@@ -189,9 +189,12 @@ div.comment {
         background-color: white;
         opacity: 1;
     }
+    div.modal-container {
+        min-width: 97vw;
+    }
     input {
-        min-width: 80vw;
-        min-height: 6vh;
+        min-width: 95vw;
+        min-height: 8vh;
         border: 3px white solid;
         border-radius: 15px;
         color: white;
@@ -203,22 +206,26 @@ div.comment {
 
     h2 {
         font-size: 8em;
-        font-family: "AllOverAgain", "Dokdo", "Courier", "Helvetica Neue",
-            "Lato", "Segoe UI", Helvetica, Arial, sans-serif;
+        font-family: "AllOverAgain", "Dokdo", "Source Sans Pro", sans-serif,
+            "Courier", "Helvetica Neue", "Lato", "Segoe UI", Helvetica, Arial,
+            sans-serif;
     }
     button {
-        min-width: 20vw;
+        min-width: 28vw;
         padding: 15px;
         display: block;
         text-transform: uppercase;
         font-size: larger;
+        font-family: "AllOverAgain", "Dokdo", "Source Sans Pro", sans-serif,
+            "Courier", "Helvetica Neue", "Lato", "Segoe UI", Helvetica, Arial,
+            sans-serif;
     }
     button#upload {
         min-width: 20vw;
-        padding: 25px;
+        padding: 65px;
         display: block;
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 5em;
         margin-right: 25%;
     }
     button#delete {
