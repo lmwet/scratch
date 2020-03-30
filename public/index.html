@@ -3,6 +3,7 @@
 <head>
     <title>Daily Sketch</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -17,16 +18,16 @@
         </h2>
 
         <form id='main-form'>
+            <input @change='handleChange' type="file" name='file' id='file' accept='image/*'>
             <input v-model='title' type="text" name='title' placeholder='title'>
             <input v-model='description' type="text" name='description' id='description' placeholder='description'>
             <input v-model='username' type="text" name='username' placeholder='username'>
-            <input @change='handleChange' type="file" name='file' id='file' accept='image/*'>
             <!-- <input type="hidden" name="_csrf" value="{{csrfToken}}"> -->
             <button @click='handleClick'>Upload</button>
         </form>
 
         <div class="container" >
-            <li v-for='image in images' class="card">
+            <li v-for='image in images' :key="images.id"class="card">
                 <a :href="'#' + image.id">
             <img class="small" :src="image.url">
         </a>
@@ -64,13 +65,13 @@
                     <!-- image-block -->
                     <div :id="imageInfos" class="image-info-block">
                     <img :id="imageInfos.id" :src="imageInfos.url" :alt="imageInfos.description" class="large" />  
-                    <button @click='deleteImage' id="delete" >Delete this image</button>
+                    <button @click='deleteImage' id="delete"><i style="font-size:24px" class="fa"> &#xf014;</i></button>
                     <h3>{{imageInfos.title}}</h3>
                     <em id="image-username">by {{imageInfos.username}}</em>
                     <p id="image-description">{{imageInfos.description}}</p>
                     </div>
 
-                    <div  v-for='comment in comments'class="comment">
+                    <div  v-for='comment in comments' :key="comment.created_at" class="comment">
                     <p :id=comment>{{comment.comment}}</p>
                     <span :id="username">{{comment.username}}</span><span :id="created_at">  {{comment.created_at}}</span>
                     </div>
@@ -79,8 +80,6 @@
     </div>
     
     </script>
-
-
 
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

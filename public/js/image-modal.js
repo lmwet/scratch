@@ -43,19 +43,16 @@ Vue.component("image-modal", {
         axios
             .get("/comments/" + self.id)
             .then(function(resp) {
-                //lets not show an empty page but close the modal instead
-
                 self.comments = resp.data.rows;
             })
             .catch(function(err) {
                 console.log("err in get comments in image modal", err);
-                //or close the modal HERE
+                self.pleaseclosemodal();
             });
     },
 
     methods: {
         pleaseclosemodal: function() {
-            console.log("this is closeModal", this);
             this.$emit("pleaseclosemodal");
         },
 

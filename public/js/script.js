@@ -44,6 +44,8 @@
                     .post("/upload", formData)
                     .then(function(resp) {
                         self.images.unshift(resp.data.rows[0]);
+                        var form = document.querySelector("#main-form");
+                        form.reset();
                     })
                     .catch(function(err) {
                         console.log("err in POST /upload: ", err);

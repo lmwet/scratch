@@ -1,11 +1,17 @@
+@font-face {
+    font-family: "AllOverAgain";
+    src: url(/public/all_over_again/AllOverAgain.ttf) format("ttf");
+}
+
 * {
     box-sizing: border-box;
 }
 h2 {
-    font-size: 42px;
+    font-size: 5em;
+    font-family: "AllOverAgain";
     color: #151e3f;
     font-weight: 300;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     text-align: center;
 }
 body {
@@ -14,7 +20,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("/myOwnImages/texturenoire.png");
 }
 div.container {
     padding: 40px 80px;
@@ -24,14 +29,10 @@ div.container {
 }
 li.card {
     padding: 2%;
-    background-color: whitesmoke;
-    list-style: none;
     height: auto;
     width: 25vw;
-    -webkit-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
-    -moz-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
-    box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
-    margin: 15px;
+    margin: 25px;
+    list-style: none;
 }
 img.small {
     min-width: 20vw;
@@ -64,23 +65,21 @@ input#file {
     box-shadow: none;
 }
 input#comment-field {
-    height: 4vh;
     width: 28vw;
 }
 #description {
-    height: 4vh;
-    width: 40vw;
+    width: 30vw;
 }
 button {
-    padding: 5px;
+    padding-top: 5px;
     background-color: white;
     font-size: larger;
-    text-transform: uppercase;
+    margin: 15px;
     border-radius: 15px;
-    border: black solid 2px;
-    -webkit-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
-    -moz-box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
-    box-shadow: 5px 5px 5px 0px rgba(133, 176, 222, 0.475);
+    border: rgba(0, 0, 139, 0.728) 2px solid;
+    /* -webkit-box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475);
+    box-shadow: 2px 2px 2px 0px rgba(133, 176, 222, 0.475); */
     cursor: pointer;
 }
 button#more {
@@ -126,4 +125,47 @@ div.comment {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+/* media queries */
+
+@media only screen and (max-device-width: 480px) {
+    li.card {
+        display: block;
+        height: auto;
+        width: 90vw;
+    }
+    div.modal-container {
+        margin-top: 6%;
+    }
+    img.small {
+        min-width: 60vw;
+        max-width: 70vw;
+        cursor: pointer;
+    }
+    img.large {
+        min-width: 60vw;
+        max-width: 70vw;
+        cursor: pointer;
+    }
+    input {
+        min-width: 60vw;
+    }
+    h2 {
+        font-size: 6em;
+    }
+    button {
+        min-width: 20vw;
+        margin-left: 24vw;
+        padding: 15px;
+        display: block;
+        text-transform: uppercase;
+        font-size: larger;
+    }
+    button#delete {
+        font-size: 46px;
+        padding: 0;
+        border: none;
+        max-width: 4vw;
+        margin-left: 0;
+    }
 }
