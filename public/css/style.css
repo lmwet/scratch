@@ -8,8 +8,8 @@
 }
 h2 {
     font-size: 4em;
-    font-family: "AllOverAgain", "Helvetica Neue", "Lato", "Segoe UI", Helvetica,
-        Arial, sans-serif;
+    font-family: "AllOverAgain", "Courier", "Helvetica Neue", "Lato", "Segoe UI",
+        Helvetica, Arial, sans-serif;
     color: #b116ac;
     font-weight: 300;
     text-align: center;
@@ -87,7 +87,7 @@ input#user-field {
     width: 30vw;
 }
 button {
-    padding-top: 5px;
+    padding: 15px;
     background-color: white;
     color: #b116ac;
     font-size: larger;
@@ -167,46 +167,63 @@ div.comment {
     img.small {
         min-width: 60vw;
         max-width: 70vw;
-        cursor: pointer;
     }
     img.large {
         min-width: 60vw;
         max-width: 70vw;
-        cursor: pointer;
-    }
-    input {
-        min-width: 60vw;
     }
     input#file {
         border-bottom: transparent;
         border-radius: 15px;
         box-shadow: none;
-        padding-top: 5px;
+        padding-top: 15px;
         color: #b116ac;
         font-size: larger;
         margin: 15px;
         cursor: pointer;
         background-color: white;
+        opacity: 1;
     }
+    input {
+        min-width: 80vw;
+        min-height: 6vh;
+        border: 3px white solid;
+        border-radius: 15px;
+        background-color: white;
+        opacity: 0.5;
+    }
+
     h2 {
         font-size: 8em;
     }
     button {
         min-width: 20vw;
-        margin-left: 34vw;
         padding: 15px;
         display: block;
         text-transform: uppercase;
         font-size: larger;
     }
+    button#upload {
+        min-width: 20vw;
+        padding: 25px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 20px;
+        margin-right: 25%;
+    }
     button#delete {
         font-size: 46px;
-        padding: 0;
+        padding: 10px;
         border: none;
         max-width: 4vw;
         margin-left: 0;
     }
     p {
         font-size: 36px;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 2em;
     }
 }
