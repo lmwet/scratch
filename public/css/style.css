@@ -8,8 +8,8 @@
 }
 h2 {
     font-size: 4em;
-    font-family: "AllOverAgain", "Courier", "Helvetica Neue", "Lato", "Segoe UI",
-        Helvetica, Arial, sans-serif;
+    font-family: "AllOverAgain", "Dokdo", "Courier", "Helvetica Neue", "Lato",
+        "Segoe UI", Helvetica, Arial, sans-serif;
     color: #b116ac;
     font-weight: 300;
     text-align: center;
@@ -142,7 +142,7 @@ div.comment {
     border-radius: 15px;
 }
 .close {
-    color: #aaa;
+    color: rgb(151, 148, 148);
     float: right;
     font-size: 38px;
 }
@@ -189,12 +189,16 @@ div.comment {
         min-height: 6vh;
         border: 3px white solid;
         border-radius: 15px;
-        background-color: white;
+        color: white;
+        text-transform: uppercase;
+        font-size: 25px;
+        background-color: #b116ac;
         opacity: 0.5;
     }
 
     h2 {
         font-size: 8em;
+        font-family: "AllOverAgain", "Dokdo", cursive;
     }
     button {
         min-width: 20vw;
@@ -212,11 +216,15 @@ div.comment {
         margin-right: 25%;
     }
     button#delete {
-        font-size: 46px;
         padding: 10px;
         border: none;
         max-width: 4vw;
         margin-left: 0;
+    }
+    i.fa {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 25px;
     }
     p {
         font-size: 36px;
@@ -224,6 +232,6 @@ div.comment {
     .close {
         color: #aaa;
         float: right;
-        font-size: 2em;
+        font-size: 5em;
     }
 }
