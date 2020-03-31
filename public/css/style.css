@@ -13,8 +13,8 @@
 }
 h2 {
     font-size: 4em;
-    font-family: "AllOverAgain", "Dokdo", "Courier", "Helvetica Neue", "Lato",
-        "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Dokdo", "Courier", "Helvetica Neue", "Lato", "Segoe UI",
+        Helvetica, Arial, sans-serif;
     color: #b116ac;
     font-weight: 300;
     text-align: center;
@@ -157,6 +157,9 @@ div.comment {
     text-decoration: none;
     cursor: pointer;
 }
+#fa-comment {
+    display: none;
+}
 /* media queries */
 
 @media only screen and (max-device-width: 480px) {
@@ -246,5 +249,12 @@ div.comment {
         color: #aaa;
         float: right;
         font-size: 5em;
+    }
+    #fa-comment {
+        display: block;
+        color: #b116ac;
+        font-size: 5em;
+        float: right;
+        /* margin-top: 15px; */
     }
 }

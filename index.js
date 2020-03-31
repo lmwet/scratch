@@ -27,16 +27,6 @@ const uploader = multer({
 const express = require("express");
 const app = express();
 const db = require("./utils/db.js");
-// var compare = require("tsscmp");
-// const cookieSession = require("cookie-session");
-// const csurf = require("csurf");
-
-// app.use(
-//     cookieSession({
-//         secret: `I'm always angry.`,
-//         maxAge: 1000 * 60 * 60 * 24 * 7 * 6
-//     })
-// );
 
 app.use(
     express.urlencoded({
@@ -44,14 +34,13 @@ app.use(
     })
 );
 
-// app.use(csurf());
-
 app.use(express.static("public")); // by default will look for a index.js file
 app.use(express.static("public"));
 app.use(express.json());
 
 app.get("/images", (req, res) => {
     console.log("/images route has been hit!");
+
     ///////// BASIC AUTH ///////
     // var auth = require("basic-auth");
     // var credentials = auth(req);

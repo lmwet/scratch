@@ -32,6 +32,7 @@
                 <a :href="'#' + image.id">
             <img class="small" :src="image.url">
         </a>
+        <a :href="'#' + image.id"><i id="fa-comment" class="fa">&#xf0e5;</i></a>
             <p class="title">{{image.title}}</p>
             <p class="username">by {{image.username}}</p>
         </li>
@@ -57,7 +58,7 @@
                     <!-- image-block -->
                     <div :id="imageInfos" class="image-info-block">
                     <img :id="imageInfos.id" :src="imageInfos.url" :alt="imageInfos.description" class="large" />  
-                    <button @click='deleteImage' id="delete"><i style="font-size:3em" class="fa"> &#xf014;</i></button>
+                    <button @click='deleteImage' id="delete"><i style="font-size:24px" class="fa"> &#xf014;</i></button>
                     <h3>{{imageInfos.title}}</h3>
                     <em id="image-username">by {{imageInfos.username}}</em>
                     <p id="image-description">{{imageInfos.description}}</p>
